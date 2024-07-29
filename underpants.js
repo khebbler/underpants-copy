@@ -170,7 +170,17 @@ I: Takes in an array and a function
 */
 
 _.filter = function(array, func) {
-
+    // Creating output array
+    let output = [];
+    // Looping over array
+    for (let i = 0; i < array.length; i++) {
+        // Determining if result of invoking func is true
+        if (func(array[i], i, array)) {
+            output.push(array[i]);
+        }
+    }
+    // Returning output array
+    return output;
 }
 
 
