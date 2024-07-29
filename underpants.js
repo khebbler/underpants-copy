@@ -3,8 +3,14 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 'use strict';
 
-var _ = {};
+// Functional Library
 
+var _ = {};  // var _ = {}
+
+_.identity = function(value) {
+    // Return value unchanged
+    return value;
+}
 
 /**
 * START OF OUR LIBRARY!
@@ -117,7 +123,7 @@ var _ = {};
 /** _.each
 * Arguments:
 *   1) A collection
-*   2) A function
+*   2) A function (high order func)
 * Objectives:
 *   1) if <collection> is an array, call <function> once for each element
 *      with the arguments:
@@ -154,9 +160,18 @@ var _ = {};
 *   1) What if <function> returns something other than true or false?
 * Examples:
 *   _.filter([1,2,3,4,5], function(x){return x%2 === 0}) -> [2,4]
+    _filter(['alex', 'francis', 'aaron']), function... 
 * Extra Credit:
 *   use _.each in your implementation
 */
+/*
+I: Takes in an array and a function
+
+*/
+
+_.filter = function(array, func) {
+
+}
 
 
 /** _.reject
@@ -193,7 +208,7 @@ var _ = {};
 */
 
 
-/** _.map
+/** _.map (same as class 7/29)
 * Arguments:
 *   1) A collection
 *   2) a function
