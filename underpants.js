@@ -7,10 +7,7 @@
 
 var _ = {};  // var _ = {}
 
-_.identity = function(value) {
-    // Return value unchanged
-    return value;
-}
+
 
 /**
 * START OF OUR LIBRARY!
@@ -27,6 +24,10 @@ _.identity = function(value) {
 *   _.identity({a: "b"}) === {a: "b"}
 */
 
+_.identity = function(value) {
+    // Return value unchanged
+    return value;
+}
 
 /** _.typeOf
 * Arguments:
@@ -48,6 +49,16 @@ _.identity = function(value) {
 * _.typeOf([1,2,3]) -> "array"
 */
 
+_.typeOf = function(value) {
+    if (value === null) {
+        return 'null';
+    }
+    if (Array.isArray(value)) {
+        return 'array';
+    }
+    return typeof value;
+};
+
 
 /** _.first
 * Arguments:
@@ -66,6 +77,25 @@ _.identity = function(value) {
 *   _.first(["a", "b", "c"], 1) -> "a"
 *   _.first(["a", "b", "c"], 2) -> ["a", "b"]
 */
+
+_.first = function(array, number) {
+    //  Checking if <array> is not an array
+    if(!Array.isArray(array)) {
+        // returning []
+        return [];
+    }
+    // Checking if <number> is not given or not a number
+    if (number === undefined || typeof number !== 'number') {
+        // return just the first element in <array>.
+        return array[0];
+    }
+    //  1) What if <number> is negative?
+    if (number < 0) {
+        return [];
+    }
+    // *   2) What if <number> is greater than <array>.length?
+    return array.slice(0, number);
+}
 
 
 /** _.last
@@ -86,6 +116,27 @@ _.identity = function(value) {
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
 
+_.last = function(array, number){
+// Check if the first argument is not an array
+if (!Array.isArray(array)) {
+    return [];
+}
+// If number is not given or not a number, return the last element of the array
+if (number === undefined || typeof number !== 'number') {
+    return array[array.length - 1];
+}
+// If number is negative, return an empty array
+if (number < 0) {
+    return [];
+}
+// If number is greater than array length, return the entire array
+if (number > array.length) {
+    return array;
+}
+// Return the last number items of the array
+return array.slice(array.length - number);
+}
+
 
 /** _.indexOf
 * Arguments:
@@ -103,6 +154,30 @@ _.identity = function(value) {
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
 
+/*
+I: an array, value
+O: the index of <array> that is the first occurrance of <value>,
+   -1 if <value> is not in <array>
+C: cannot use .indexof
+E: what if <array> has multiple occurances of val?
+   what if <val> isn't in <array>?
+*/
+
+
+
+_.indexOf = function(array, value) {
+    // Looping through array
+    for (let i = 0; i < array.length; i++) {
+        // Checking if the index of <array> is equal to the <value>
+        if (array[i] === value) {
+            // Returning the first occurence of index
+            return i;
+        }
+    }
+    // Returning -1 if <value> is not in <array>
+    return -1;
+}
+
 
 /** _.contains
 * Arguments:
@@ -117,6 +192,15 @@ _.identity = function(value) {
 *   2) what if no <value> is given?
 * Examples:
 *   _.contains([1,"two", 3.14], "two") -> true
+*/
+
+/*
+I: an array, a value
+O: Return true if <array> contains <value>
+   Return false otherwise
+C: must use ternary operator
+E: did you use === ?
+   what if no <value> is given?
 */
 
 
@@ -164,9 +248,12 @@ _.identity = function(value) {
 * Extra Credit:
 *   use _.each in your implementation
 */
+
 /*
 I: Takes in an array and a function
-
+O: 
+C:
+E:
 */
 
 _.filter = function(array, func) {
