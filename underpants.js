@@ -203,6 +203,11 @@ E: did you use === ?
    what if no <value> is given?
 */
 
+_.contains = function(array, value){
+//           condition      if true       if false
+return value === undefined ? false : array.includes(value);
+};
+
 
 /** _.each
 * Arguments:
@@ -219,6 +224,29 @@ E: did you use === ?
 *   _.each(["a","b","c"], function(e,i,a){ console.log(e)});
 *      -> should log "a" "b" "c" to the console
 */
+
+/*
+I: 
+O:
+C:
+E:
+*/
+ _.each = function(collection, func) {
+    // Checking if collection is an array
+    if (Array.isArray(collection)) {
+        // Iterating through collection array
+        for (let i = 0; i < collection.length; i++) {
+            // Calling function with the element, it's index, <collection>
+            func(collection[i], i, collection);
+        }
+    } else if (typeof collection === 'object') {
+        // Iterating through collection object
+        for (let key in collection) {
+            func(collection[i], i, collection);
+        }
+    }
+}
+
 
 
 /** _.unique
@@ -395,7 +423,35 @@ _.filter = function(array, func) {
 *   1) What if <seed> is not given?
 * Examples:
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
+*
+* Reduce iterates through an array to "accumulate" a single return value
 */
+
+_.reduce = function(array, func, seed ) {
+    // Initializing output variable (what we are accumulating)
+    let output;
+    // Checking if seed has value
+    if (seed === undefined) {
+        // Output = first item in array
+        output = array[0];
+        // Iterating through array
+        for (let i = 1; i < array.length; i++) {
+            // Reassigning output to result of invoking callback function
+            output = func(output, array[i], i);   
+        }
+    // else there is a seed value
+    } else { 
+        // Assigning output to seed
+        output = seed;
+        // Iterating through entire array
+        for (let i = 0; i < array.length; i++) {
+            // Reassigning output to result of invoking callback function
+            output = func(output, array[i], i)  
+        }
+    }
+    // Returning output
+    return output;
+}
 
 
 /** _.extend
