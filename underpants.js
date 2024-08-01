@@ -454,7 +454,7 @@ _.reduce = function(array, func, seed ) {
 }
 
 
-/** _.extend
+/** _.extend // Object.assign()
 * Arguments:
 *   1) An Object
 *   2) An Object
@@ -468,6 +468,11 @@ _.reduce = function(array, func, seed ) {
 *   _.extend(data, {b:"two"}); -> data now equals {a:"one",b:"two"}
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
+
+
+_.extend = function(target, ...objects){
+    
+}
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
