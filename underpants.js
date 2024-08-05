@@ -469,10 +469,26 @@ _.reduce = function(array, func, seed ) {
 *   _.extend(data, {a:"two"}); -> data now equals {a:"two"}
 */
 
-
+/*
+I: target, objects
+O:
+C:
+E:
+*/
 _.extend = function(target, ...objects){
+    // Iterating through objects
+    for (let i = 0; i < objects.length; i++) {
+        //
+        let storageObj = objects[i];
+    }
     
 }
+
+
+_.extend = function(target, ...objects){
+    return Object.assign(target, ...objects);
+}
+
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
