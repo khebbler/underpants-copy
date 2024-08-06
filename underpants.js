@@ -387,7 +387,7 @@ E: This is going to return an array of arrays.
 */
 
 _.partition = function(array, func) {
-    // Initializing storage arrays
+    // Initializing 2 storage arrays for true & false values
     let trueArr = [];
     let falseArr = [];
     // Iterating through array
@@ -422,7 +422,32 @@ _.partition = function(array, func) {
 * Examples:
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
+/* 
+I: a collection, a function
+O: a new array
+C:
+E:
+*/
 
+_.map = function(collection, func) {
+    // Initializing a storage array
+    var output = [];
+    // Checking if collection is an array
+    if (Array.isArray(collection)) {
+        // Iterating through collection array
+        for (let i = 0; i < collection.length; i++) {
+            // Calling function for each element in collection
+            output.push(func(collection[i], i, collection));
+        }
+    } else {
+        // Iterating through object
+        for (var key in collection) {
+            // Calling function for each element in collection
+            output.push(func(collection[key], key, collection));
+        }
+    }
+    return output;
+};
 
 /** _.pluck
 * Arguments:
@@ -434,7 +459,21 @@ _.partition = function(array, func) {
 * Examples:
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
+/*
+I: an array of obejcts, a property
+O: an array containing the value of <property> for every element in <array>
+C:
+E:
+*/
 
+_.pluck = function(array, property) {
+    // Calling map with array
+    // iterating over the array to get the property value?
+    return _.map(array, function(object) {
+        // Returning property value
+        return object[property];
+    });
+};
 
 /** _.every
 * Arguments:
