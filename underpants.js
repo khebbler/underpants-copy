@@ -265,9 +265,26 @@ E:
 * Examples:
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
+/*
+I: an array
+O: a new array of all elements from <array> with duplicates removed
+C: must use indexOf()
+E:
+*/
 
 _.unique = function(array) {
-    var uni
+    // Initializing uniqueArray 
+    var uniqueArray = [];
+    // Iterating throuh array
+    for (var i = 0; i < array.length; i++) {
+      // Using indexOf to check if i is in uniqueArray
+      if (_.indexOf(uniqueArray, array[i]) === -1) {
+        // Pushing elements to uniqueArray
+        uniqueArray.push(array[i]);
+      }
+    }
+    // Returing uniqueArray
+    return uniqueArray;
 }
 
 
@@ -290,7 +307,7 @@ _.unique = function(array) {
 
 /*
 I: Takes in an array and a function
-O: 
+O: a new array of elements for which calling <function> returned true
 C:
 E:
 */
