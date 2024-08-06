@@ -495,7 +495,32 @@ _.pluck = function(array, property) {
 *   _.every([2,4,6], function(e){return e % 2 === 0}) -> true
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
+/*
+I: a collection, a function
+O: 
+*/
 
+_.every = function(collection, func) {
+    // Creating a storage array
+    var output;
+
+    // Checking if collection is an array
+    if (Array.isArray(collection)) {
+        // Iteratring through collection
+        for (let i = 0; i < collection.length; i++) {
+            // Calling func for every element of collection
+            output = func(collection[i], i, collection);
+        } if (!output) return false;
+    // Checking if colelction is an object
+    } else if (collection !== null && typeof collection === 'object') {
+        // Iterating through object
+        for (let key in collection) {
+            output = collection[key];
+        }
+        if (!output) return false;
+    }
+    return true;
+}
 
 /** _.some
 * Arguments:
@@ -517,6 +542,22 @@ _.pluck = function(array, property) {
 *   _.some([1,3,5], function(e){return e % 2 === 0}) -> false
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
+
+_.some = function(collection, func) {
+    var output;
+    
+    if (Array.isArray(collection)) {
+        for (let i = 0; i < collection.length; i++) {
+            output = func(collection[i], i, collection);
+        }
+    } else if (collection !== null && typeof collection === 'object') {
+        for (let key in collection) {
+            output = func(collection[key], key, collection);
+        } 
+    }
+    return false
+
+}
 
 
 /** _.reduce
