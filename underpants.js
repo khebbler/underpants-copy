@@ -379,6 +379,32 @@ _.reject = function(array, func) {
 *   }); -> [[2,4],[1,3,5]]
 }
 */
+/* 
+I: an array, a function
+O: an array that is made up of 2 sub arrays
+C:
+E: This is going to return an array of arrays.
+*/
+
+_.partition = function(array, func) {
+    // Initializing storage arrays
+    let trueArr = [];
+    let falseArr = [];
+    // Iterating through array
+    for (let i = 0; i < array.length; i++) {
+        // Determining if result of invoking func is true 
+        if (func(array[i], i, array)) {
+            // Pushing to trueArr
+            trueArr.push(array[i]);
+        } else {
+            // Otherwise, pushing to falseArr
+            falseArr.push(array[i]);
+        }
+    }
+    // Returning an array that is made up of 2 sub arrays
+    return [trueArr, falseArr];
+
+}
 
 
 /** _.map (same as class 7/29)
