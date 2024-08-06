@@ -25,7 +25,7 @@ var _ = {};  // var _ = {}
 */
 
 _.identity = function(value) {
-    // Return value unchanged
+    // Returning value unchanged
     return value;
 }
 
@@ -50,12 +50,15 @@ _.identity = function(value) {
 */
 
 _.typeOf = function(value) {
+    // Checking for null
     if (value === null) {
         return 'null';
     }
+    // Checking for array
     if (Array.isArray(value)) {
         return 'array';
     }
+    // Returning type of value
     return typeof value;
 };
 
@@ -203,6 +206,7 @@ E: did you use === ?
    what if no <value> is given?
 */
 
+
 _.contains = function(array, value){
 //           condition      if true       if false
 return value === undefined ? false : array.includes(value);
@@ -226,7 +230,7 @@ return value === undefined ? false : array.includes(value);
 */
 
 /*
-I: 
+I: a collection, a function
 O:
 C:
 E:
@@ -239,10 +243,13 @@ E:
             // Calling function with the element, it's index, <collection>
             func(collection[i], i, collection);
         }
-    } else if (typeof collection === 'object') {
+    } else {
         // Iterating through collection object
         for (let key in collection) {
-            func(collection[i], i, collection);
+            if (collection.hasOwnProperty(key)) {
+            // Calling function with the property's value, it's key, <collection>
+            func(collection[key], key, collection);    
+            }
         }
     }
 }
@@ -258,6 +265,10 @@ E:
 * Examples:
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
+
+_.unique = function(array) {
+    var uni
+}
 
 
 /** _.filter
