@@ -340,6 +340,26 @@ _.filter = function(array, func) {
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
 
+/*
+I: an array, a function
+O: a new array of elements for which calling <function> returned false
+C:
+E:
+*/
+
+_.reject = function(array, func) {
+    var storageArr = [];
+    // Iterating through array
+    for (var i = 0; i < array.length; i++) {
+        // Determining if result of invoking func is false
+        if (!func(array[i], i, array)) {
+            // Pushing elements to storageArr
+            storageArr.push(array[i]);
+        }
+    }
+    // Returning storageArr
+    return storageArr;
+};
 
 /** _.partition
 * Arguments:
