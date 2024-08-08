@@ -549,19 +549,34 @@ _.every = function(collection, func) {
 */
 
 _.some = function(collection, func) {
-    var output;
-    
-    if (Array.isArray(collection)) {
-        for (let i = 0; i < collection.length; i++) {
-            output = func(collection[i], i, collection);
+ // Checking if func is a function
+ if (typeof func !== 'function') {
+    func = function(value) { return value; };
+}   
+ // Checking if collection is an array
+ if (Array.isArray(collection)) {
+    // Iterating through collection
+    for (let i = 0; i < collection.length; i++) {
+        // Calling func for every element of collection
+        if (func(collection[i], i, collection)) {
+            // Returning true if func returns true
+            return true; 
         }
-    } else if (collection !== null && typeof collection === 'object') {
-        for (let key in collection) {
-            output = func(collection[key], key, collection);
-        } 
     }
-    return false
-
+} 
+// Checking if collection is an object
+else if (collection !== null && typeof collection === 'object') {
+    // Iterating through collection
+    for (let key in collection) {
+        // Calling func for every element of collection
+        if (func(collection[key], key, collection)) {
+            // Returning true if func returns true
+            return true; 
+        }
+    }
+}
+// Returning false if func returns false
+return false;
 }
 
 
